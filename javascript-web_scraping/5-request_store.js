@@ -12,8 +12,10 @@
 // which helps in catching common coding mistakes and "unsafe" actions.
 
 const request = require('request');
+// The 'request' module is imported, is used to make HTTP requests.
 
 const fs = require('fs');
+// The 'fs' (File System) module provides an API for interacting with file system in a manner closely modeled around standard POSIX functions.
 
 const url = process.argv[2];
 // The URL for the GET request is taken from the command line arguments.
@@ -21,7 +23,7 @@ const url = process.argv[2];
 const filePath = process.argv[3];
 // The file path for storing the webpage contents is taken from the command line arguments.
 
-request(url, function (error, response, body) {
+request(url, (error, response, body) => {
   // The 'request' function from the 'request' module is used to make a GET request to the specified URL.
   // The callback function takes three arguments: 'error', 'response', and 'body'.
 
