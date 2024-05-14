@@ -113,3 +113,7 @@ package-lock.json
 .eslintrc.js
 node_modules
 babel.config.js
+# VS Code Workspace files
+*.code-workspace
+# Environment variables
+*.env
