@@ -23,20 +23,25 @@ request(url, function (error, response, body) {
   // The callback function takes three arguments: 'error', 'response', and 'body'.
 
   if (error) {
-    // If there is an error with the request (like a network problem), it will be logged to the console and the function will return early.
+    // If there is an error with request (like a network problem), it will be logged to console and function will return early.
     console.error('error:', error);
     return;
   }
 
-  const movie = JSON.parse(body);
-  // The 'body' of the response is parsed from JSON to a JavaScript object.
+  try {
+    const movie = JSON.parse(body);
+    // The 'body' of the response is parsed from JSON to a JavaScript object.
 
-  if (movie.detail === 'Not found') {
-    // If the movie detail is 'Not found', a message is logged to the console and the function returns early.
-    console.log('No movie found with this ID');
-    return;
+    if (movie.detail === 'Not found') {
+      // If the movie detail is 'Not found', a message is logged to the console and the function returns early.
+      console.log('No movie found with this ID');
+      return;
+    }
+
+    console.log(movie.title);
+    // If there is no error and the movie is found, the title of the movie is logged to the console.
+  } catch (err) {
+    // If an error occurs during JSON parsing, log the error and provide a user-friendly message.
+    console.error('Failed to parse JSON:', err);
   }
-
-  console.log(movie.title);
-  // If there is no error and the movie is found, the title of the movie is logged to the console.
 });
