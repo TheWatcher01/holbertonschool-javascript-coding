@@ -29,7 +29,7 @@ request(url, (error, response, body) => {
 
   if (error) {
     // If there's an error with the request (like a network problem), it will be logged to the console and the function will return early.
-    console.error('Error:', error);
+    console.error(error);
     return;
   }
 
@@ -40,7 +40,7 @@ request(url, (error, response, body) => {
 
     if (error) {
       // If there's an error writing the file, it will be logged to the console.
-      console.error('Error:', error);
+      console.error(error);
     } else {
       // If the file is written successfully, a success message is logged to the console.
       console.log('The content was saved!');
