@@ -41,9 +41,6 @@ request(url, (error, response, body) => {
     if (error) {
       // If there's an error writing the file, it will be logged to the console.
       console.error(error);
-    } else {
-      // If the file is written successfully, a success message is logged to the console.
-      console.log('The content was saved!');
     }
   });
 });
