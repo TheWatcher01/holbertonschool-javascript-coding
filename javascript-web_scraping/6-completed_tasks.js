@@ -13,8 +13,8 @@
 const request = require('request');
 // The 'request' module is imported. This module allows you to make HTTP requests in a simple way.
 
-const url = 'https://jsonplaceholder.typicode.com/todos';
-// The URL for the GET request is defined. This URL points to a JSON placeholder API that returns a list of todos.
+const url = process.argv[2];
+// URL of the JSON API is stored in the 'url' variable, it is first command line argument passed to the script.
 
 request(url, function (error, response, body) {
   // The 'request' function from the 'request' module is used to make a GET request to the specified URL.
