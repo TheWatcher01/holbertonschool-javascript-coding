@@ -9,33 +9,29 @@
 const http = require('http');
 const fs = require('fs').promises;
 
-const countStudents = async (filePath) => {
+async function countStudents(pathFile) {
   try {
-    const data = await fs.readFile(filePath, 'utf8');
+    const data = await fs.readFile(pathFile, 'utf8');
     const lines = data.split('\n').filter((line) => line.trim() !== '');
-    const students = lines.slice(1).map((line) => line.split(',')).filter((student) => student.length === 4);
+    const students = lines.slice(1).map((line) => line.split(','));
 
     const totalStudents = students.length;
-    let response = `Number of students: ${totalStudents}\n`;
+    console.log(`Number of students: ${totalStudents}`);
 
-    const fields = {};
+    const studentsByFields = {};
     students.forEach((student) => {
       const field = student[3];
-      if (!fields[field]) {
-        fields[field] = [];
-      }
-      fields[field].push(student[0]);
+      if (!studentsByFields[field]) studentsByFields[field] = [];
+      studentsByFields[field].push(student[0]);
     });
 
-    for (const [field, names] of Object.entries(fields)) {
-      response += `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}\n`;
+    for (const [field, names] of Object.entries(studentsByFields)) {
+      console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
     }
-
-    return response.trim();
   } catch (error) {
     throw new Error('Cannot load the database');
   }
-};
+}
 
 const app = http.createServer(async (req, res) => {
   const filePath = process.argv[2];
