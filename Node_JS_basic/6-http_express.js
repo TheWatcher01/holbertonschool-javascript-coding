@@ -3,7 +3,7 @@
  * @file 6-http_express.js
  * @author TheWatcher01
  * @date 27-05-2024
- * @description Module contains small HTTP server using Express.
+ * @description Module contains small HTTP server using Express
  */
 
 const express = require('express');

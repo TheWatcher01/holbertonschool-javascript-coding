@@ -3,7 +3,7 @@
  * @file 3-read_file_async.js
  * @author TheWatcher01
  * @date 27-05-2024
- * @description
+ * @description Asynchronous function that reads a file and prints the contents.
  */
 
 const fs = require('fs').promises;
