@@ -8,7 +8,6 @@
 
 const http = require('http');
 const fs = require('fs').promises;
-const url = require('url');
 
 const countStudents = async (filePath) => {
   try {
@@ -39,12 +38,11 @@ const countStudents = async (filePath) => {
 };
 
 const app = http.createServer(async (req, res) => {
-  const parsedUrl = url.parse(req.url, true);
-  if (parsedUrl.pathname === '/') {
+  if (req.url === '/') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
-  } else if (parsedUrl.pathname === '/students') {
+  } else if (req.url === '/students') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     try {
