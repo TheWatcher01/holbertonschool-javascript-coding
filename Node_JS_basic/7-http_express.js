@@ -43,15 +43,15 @@ app.get('/students', (req, res) => {
   const databasePath = process.argv[2];
   countStudents(databasePath)
     .then((fields) => {
-      let response = 'This is the list of our students\n';
+      let responseText = 'This is the list of our students\n';
       const totalStudents = Object.values(fields).reduce((acc, field) => acc + field.length, 0);
-      response += `Number of students: ${totalStudents}\n`;
+      responseText += `Number of students: ${totalStudents}\n`;
 
       for (const [field, students] of Object.entries(fields)) {
-        response += `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}\n`;
+        responseText += `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}\n`;
       }
 
-      res.send(response.trim());
+      res.send(responseText.trim());
     })
     .catch((error) => res.status(500).send(error.message));
 });
