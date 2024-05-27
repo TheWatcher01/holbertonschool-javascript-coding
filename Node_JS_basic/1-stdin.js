@@ -11,8 +11,10 @@ process.stdout.write('Welcome to Holberton School, what is your name?\n');
 
 // Listen for user input on stdin
 process.stdin.on('data', (data) => {
-  // Print the user's name
-  process.stdout.write(`Your name is: ${data.toString().trim()}`);
+  if (data !== null) {
+    // Print the user's name
+    process.stdout.write(`Your name is: ${data.toString().trim()}\n`);
+  }
 });
 
 // Handle the end of the program
