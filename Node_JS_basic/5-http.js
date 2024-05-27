@@ -3,7 +3,7 @@
  * @file 5-http.js
  * @author TheWatcher01
  * @date 27-05-2024
- * @description Module that creates a complex HTTP server using the http module.
+ * @description Module that creates complex HTTP server using http module.
  */
 
 const http = require('http');
@@ -38,6 +38,14 @@ const countStudents = async (filePath) => {
 };
 
 const app = http.createServer(async (req, res) => {
+  const filePath = process.argv[2];
+  if (!filePath) {
+    res.statusCode = 400;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Error: No database file specified');
+    return;
+  }
+
   if (req.url === '/') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
@@ -46,7 +54,7 @@ const app = http.createServer(async (req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     try {
-      const studentsData = await countStudents(process.argv[2]);
+      const studentsData = await countStudents(filePath);
       res.end(`This is the list of our students\n${studentsData}`);
     } catch (error) {
       res.statusCode = 500;
