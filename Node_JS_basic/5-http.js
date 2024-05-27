@@ -19,14 +19,16 @@ const countStudents = async (filePath) => {
     const totalStudents = students.length;
     let response = `Number of students: ${totalStudents}\n`;
 
-    const studentsByFields = {};
+    const fields = {};
     students.forEach((student) => {
       const field = student[3];
-      if (!studentsByFields[field]) studentsByFields[field] = [];
-      studentsByFields[field].push(student[0]);
+      if (!fields[field]) {
+        fields[field] = [];
+      }
+      fields[field].push(student[0]);
     });
 
-    for (const [field, names] of Object.entries(studentsByFields)) {
+    for (const [field, names] of Object.entries(fields)) {
       response += `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}\n`;
     }
 
@@ -34,7 +36,7 @@ const countStudents = async (filePath) => {
   } catch (error) {
     throw new Error('Cannot load the database');
   }
-}
+};
 
 const app = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
@@ -46,8 +48,8 @@ const app = http.createServer(async (req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     try {
-      const studentData = await countStudents(process.argv[2]);
-      res.end(`This is the list of our students\n${studentData}`);
+      const studentsData = await countStudents(process.argv[2]);
+      res.end(`This is the list of our students\n${studentsData}`);
     } catch (error) {
       res.statusCode = 500;
       res.end(error.message);
@@ -55,14 +57,14 @@ const app = http.createServer(async (req, res) => {
   } else {
     res.statusCode = 404;
     res.setHeader('Content-Type', 'text/plain');
-    res.end('Not found');
+    res.end('Not Found');
   }
 });
 
-const port = 1245;
+const PORT = 1245;
 
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
 
 module.exports = app;
