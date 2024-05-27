@@ -3,7 +3,7 @@
  * @file StudentsController.js
  * @author TheWatcher01
  * @date 27-05-2024
- * @description
+ * @description Module containing the StudentsController class.
  */
 
 const readDatabase = require('../utils');
@@ -14,8 +14,9 @@ class StudentsController {
     readDatabase(filePath)
       .then((fields) => {
         let responseText = 'This is the list of our students\n';
-        const totalStudents = Object.values(fields).reduce((acc, field) => acc + field.length, 0);
-        responseText += `Number of students: ${totalStudents}\n`;
+        // const totalStudents =
+        // Object.values(fields).reduce((acc, field) => acc + field.length, 0);
+        // responseText += `Number of students: ${totalStudents}\n`;
 
         for (const [field, students] of Object.entries(fields).sort()) {
           responseText += `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}\n`;
