@@ -3,7 +3,7 @@
  * @file 5-http.js
  * @author TheWatcher01
  * @date 27-05-2024
- * @description Module that creates a simple HTTP server using the http module.
+ * @description Module that creates a complex HTTP server using the http module.
  */
 
 const http = require('http');
@@ -61,10 +61,10 @@ const app = http.createServer(async (req, res) => {
   }
 });
 
-const PORT = 1245;
+const port = 1245;
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
 });
 
 module.exports = app;
